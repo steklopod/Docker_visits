@@ -14,7 +14,9 @@ public class Application {
 
     @GetMapping
     public String home() throws UnknownHostException {
-        return "Привет!  " + InetAddress.getLocalHost().getHostAddress();
+        String hostAddress = InetAddress.getLocalHost().getHostAddress();
+        System.out.println(hostAddress);
+        return "Привет!  " + hostAddress;
     }
 
     public static void main(String[] args) {
