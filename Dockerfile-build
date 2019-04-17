@@ -1,9 +1,9 @@
-FROM maven:3.5.4-jdk-10-slim
+FROM gradle:5.4.0-jdk8-alpine
 WORKDIR /usr/src/java-code
 COPY . /usr/src/java-code/
-RUN mvn package
+RUN gradle build
 
 WORKDIR /usr/src/java-app
-RUN cp /usr/src/java-code/target/*.jar ./app.jar
+RUN cp /usr/src/java-code/build/libs/*.jar ./app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
