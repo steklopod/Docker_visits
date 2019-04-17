@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  hola:
+    build:
+      context: ./
+      dockerfile: Dockerfile-build
+    image: docker-visits
+    ports:
+      - 8080
+    networks:
+      - network1
+    scale: 3
+
+networks:
+  network1:
