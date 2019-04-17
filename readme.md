@@ -30,7 +30,7 @@
 ![alt text](https://github.com/steklopod/Docker_visits/blob/master/screenshots/docker-compose_up.png "docker-compose_up")
 
 
-3. Зайти по адресу: [localhost:4001](http://localhost:4001)
+3. Зайти по адресу: [http://192.168.99.100:4001/](http://192.168.99.100:4001/)
 
 ___
 
@@ -81,5 +81,20 @@ const client = redis.createClient({
 ```yaml
 services:
   redis-server:
+```
+
+#### Замена `192.168.99.100` -> localdocker
+
+Чтобы изменить адрес `192.168.99.100:4001` на [localdocker:4001](http://localdocker:4001) необходимо в
+файле `C:\Windows\System32\Drivers\etc\hosts` добавить строку:
+
+```text
+	192.168.99.100    localdocker
+```
+
+Уточнить хост по умолчанию:
+
+```bash
+    docker-machine ip default
 ```
 

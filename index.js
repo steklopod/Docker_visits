@@ -16,5 +16,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(8081, () => {
-    console.log('Listening on port 8081 or 4001');
+    console.log('Доступно по адресу: http://192.168.99.100:4001');
 });
