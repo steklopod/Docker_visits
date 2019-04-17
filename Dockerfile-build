@@ -1,14 +1,16 @@
 
 FROM gradle:5.4.0-alpine
+USER root
 
-WORKDIR /usr/src/java-code
-COPY . /usr/src/java-code/
+WORKDIR /usr/app
+
+COPY . .
 
 RUN gradle build
 
-WORKDIR /usr/src/java-app
+ENV GRADLE_USER_HOME ./.gradle
 
-RUN cp /usr/src/java-code/build/libs/*.jar ./app.jar
+RUN cp ./build/libs/*.jar ./app.jar
 
 EXPOSE 8080
 

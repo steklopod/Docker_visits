@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile-build
     image: docker-visits
     ports:
-      - 8080
+      - "8080:8080"
     networks:
       - network1
 
