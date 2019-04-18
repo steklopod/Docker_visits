@@ -24,7 +24,7 @@
 *`docker-compose.yml`:*
 
 ```yaml
-version: '3'
+version: '3.5'
 services:
   redis-server:
     image: 'redis'
@@ -33,6 +33,8 @@ services:
     ports:
       - "4001:8081"
 ```
+
+Порт `4001` - наружный, `8081` - порт внутри контейнера.
 
 > Запуск:
 
@@ -78,7 +80,7 @@ CMD ["npm", "start"]
 (_не забываем точку в конце_):
 
 ```docker
-    docker build -t steklopod/visits:latest .
+docker build -t steklopod/visits:latest .
 ```
 
 ![alt text](https://github.com/steklopod/Docker_visits/blob/master/screenshots/Docker_build.jpg "Docker_build")
@@ -87,16 +89,16 @@ CMD ["npm", "start"]
 >[Запуск](https://docs.docker.com/engine/reference/run/)
 
 ```docker
-    docker run -d -p 8080:8080 steklopod/visits
+docker run -d -p 8080:8080 steklopod/visits
 ```
 
 >[Остановка](https://docs.docker.com/engine/reference/commandline/stop/)
 ```docker
-    docker ps
+docker ps
 ```
 скопировать `id` контейнера, а затем:
 ```docker
-    docker stop my_container_ID
+docker stop my_container_ID
 ```
 ___
 
@@ -131,14 +133,14 @@ ___
 192.168.99.100    localdocker
 ```
 
-Уточнить хост по умолчанию:
+#### Уточнить хост по умолчанию:
 
 ```bash
 docker-machine ip default
 ```
 ___
 
-Обновить докер:
+#### Обновить докер:
 ```docker
 docker-machine upgrade default
 ```
