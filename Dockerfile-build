@@ -8,7 +8,6 @@ COPY . .
 
 RUN gradle build
 
-ENV GRADLE_USER_HOME ./.gradle
 
 RUN cp ./build/libs/*.jar ./app.jar
 
