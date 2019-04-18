@@ -3,7 +3,6 @@ plugins {
     id "org.springframework.boot" version "2.1.4.RELEASE"
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
     id "com.github.ben-manes.versions" version "0.21.0"
-    id "com.palantir.docker" version "0.22.0"
 }
 
 description = " Проект для быстрого старта с Docker "
@@ -17,24 +16,38 @@ repositories {
 }
 
 dependencies {
+    // Boot
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    implementation("org.jetbrains:annotations:13.0")
+    //DataBase
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.h2database:h2")
+    // implementation("org.postgresql:postgresql:42.2.2")
 
-    compileOnly("org.projectlombok:lombok")
+    // Tests
+    testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude module: "junit" }
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter-api",
+            "io.github.benas:random-beans:3.9.0",
+            "io.github.glytching:junit-extensions:2.3.0"
+    )
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+
+    // Lombok
     testCompileOnly("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+
+    // Other
+    implementation("org.jetbrains:annotations:17.0.0")
 }
 
-task unpack(type: Copy) {
-    dependsOn bootJar
-    from(zipTree(tasks.bootJar.outputs.files.singleFile))
-    into("build/dependency")
+test {
+    useJUnitPlatform {
+        includeEngines "junit-jupiter"
+        excludeEngines "junit-vintage"
+    }
 }
 
-docker {
-    name "${project}/${bootJar.archiveBaseName}"
-    copySpec.from(tasks.unpack.outputs).into("dependency")
-    buildArgs(["DEPENDENCY": "dependency"])
-}
+apply(from: "tasks.gradle")
