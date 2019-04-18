@@ -6,7 +6,7 @@ plugins {
     id "com.palantir.docker" version "0.22.0"
 }
 
-description = " Проект для быстрого старта с Docker"
+description = " Проект для быстрого старта с Docker "
 
 sourceCompatibility = 11
 targetCompatibility = 11

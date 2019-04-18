@@ -1,9 +1,15 @@
-FROM 11.0.3-jdk-slim-stretch
+FROM gradle:5.4.0-jdk11-slim
 
-COPY ./build/libs/docker-visits.jar /usr/src/steklopod/
+USER root
 
-WORKDIR /usr/src/steklopod
+WORKDIR /usr/app
+
+COPY . .
+
+RUN gradle build
+
+RUN cp ./build/libs/*.jar ./app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "docker-visits.jar"]
+CMD ["java", "-jar", "app.jar"]

@@ -3,7 +3,7 @@ services:
   steklopod-hello:
     build:
       context: ./
-      dockerfile: Dockerfile-build
+      dockerfile: Dockerfile
     image: docker-visits
     ports:
       - "8080:8080"
