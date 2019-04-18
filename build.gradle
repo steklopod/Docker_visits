@@ -1,6 +1,6 @@
 plugins {
     id "java"
-    id "org.springframework.boot" version "2.1.3.RELEASE"
+    id "org.springframework.boot" version "2.1.4.RELEASE"
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
     id "com.github.ben-manes.versions" version "0.21.0"
     id "com.palantir.docker" version "0.22.0"
@@ -8,11 +8,12 @@ plugins {
 
 description = " Проект для быстрого старта с Docker"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -27,7 +28,7 @@ task unpack(type: Copy) {
 }
 
 docker {
-    name "${project}/${bootJar.baseName}"
+    name "${project}/${bootJar.archiveBaseName}"
     copySpec.from(tasks.unpack.outputs).into("dependency")
     buildArgs(['DEPENDENCY': "dependency"])
 }

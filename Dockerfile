@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM 11.0.3-jdk-slim-stretch
 
 COPY ./build/libs/docker-visits.jar /usr/src/steklopod/
 

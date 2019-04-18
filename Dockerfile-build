@@ -1,5 +1,5 @@
+FROM gradle:5.4.0-jdk11-slim
 
-FROM gradle:5.4.0-alpine
 USER root
 
 WORKDIR /usr/app
@@ -7,7 +7,6 @@ WORKDIR /usr/app
 COPY . .
 
 RUN gradle build
-
 
 RUN cp ./build/libs/*.jar ./app.jar
 
