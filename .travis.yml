@@ -1,21 +1,33 @@
 language: java
 sudo: false
-#install: true
+
 matrix:
   include:
     - jdk: openjdk11
 #    - jdk: oraclejdk8
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 before_install:
   - chmod +x gradlew
+
 services:
   - docker
+
 cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
 script:
-#  - ./gradlew -version
   - ./gradlew clean test
+
+branches:
+  only:
+    - spring-boot
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
