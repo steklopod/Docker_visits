@@ -7,4 +7,5 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 script:
+  - chmod +x ./gradlew build connectedCheck
   - ./gradlew test
