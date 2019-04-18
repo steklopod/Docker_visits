@@ -1,7 +1,7 @@
-
 package steklopod;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,25 +13,27 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(PER_CLASS)
 @ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 class SimpleTest {
     @Autowired
     private MockMvc mockMvc;
 
     @BeforeAll
     void setup() {
-        System.out.println("\n>>> \uD83D\uDC7F \uD83D\uDC7F \uD83D\uDC7F <<<");
+        //TODO ___
     }
 
     @Test
+    @DisplayName("\uD83D\uDC7F \uD83D\uDC7F \uD83D\uDC7F")
     void testGreeting() throws Exception {
         mockMvc.perform(get("/"))
                 .andDo(print())

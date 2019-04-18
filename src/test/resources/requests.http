@@ -1,10 +1,11 @@
 # https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html
+# https://www.jetbrains.com/help/idea/exploring-http-syntax.html
 
-GET http://localhost:8080;
+
+GET http://localhost:8080
 
 ###
 
-# https://www.jetbrains.com/help/idea/exploring-http-syntax.html
 GET http://192.168.99.100:8080
 
 ###
