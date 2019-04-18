@@ -17,8 +17,14 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    implementation("org.jetbrains:annotations:13.0")
+
+    compileOnly("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 task unpack(type: Copy) {
@@ -30,5 +36,5 @@ task unpack(type: Copy) {
 docker {
     name "${project}/${bootJar.archiveBaseName}"
     copySpec.from(tasks.unpack.outputs).into("dependency")
-    buildArgs(['DEPENDENCY': "dependency"])
+    buildArgs(["DEPENDENCY": "dependency"])
 }

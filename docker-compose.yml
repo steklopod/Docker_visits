@@ -1,9 +1,7 @@
 version: '3.5'
 services:
   steklopod-hello:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: docker-visits
+    restart: always
+    build: .
     ports:
       - "8080:8080"
