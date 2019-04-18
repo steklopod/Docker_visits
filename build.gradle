@@ -2,7 +2,8 @@ plugins {
     id "java"
     id "org.springframework.boot" version "2.1.3.RELEASE"
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
-    id "org.sglahn.gradle-dockerfile-plugin" version "0.4" //https://github.com/sglahn/gradle-dockerfile-plugin
+    id "com.github.ben-manes.versions" version "0.21.0"
+    id "com.palantir.docker" version "0.22.0"
 }
 
 description = " Проект для быстрого старта с Docker"
@@ -11,11 +12,22 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+    name "${project}/${bootJar.baseName}"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
 }
