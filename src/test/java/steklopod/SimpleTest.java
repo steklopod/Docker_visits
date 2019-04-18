@@ -1,7 +1,6 @@
 
 package steklopod;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -19,8 +18,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(PER_CLASS)
@@ -31,7 +28,7 @@ class SimpleTest {
 
     @BeforeAll
     void setup() {
-        log.info(">>> \uD83D\uDC7F \uD83D\uDC7F \uD83D\uDC7F <<<");
+        System.out.println(">>> \uD83D\uDC7F \uD83D\uDC7F \uD83D\uDC7F <<<");
     }
 
     @Test

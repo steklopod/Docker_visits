@@ -2,7 +2,7 @@ FROM gradle:5.4.0-jdk11-slim
 
 USER root
 
-WORKDIR /usr/app
+WORKDIR /app
 
 COPY . .
 
