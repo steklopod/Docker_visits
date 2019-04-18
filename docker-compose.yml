@@ -3,7 +3,11 @@ services:
   redis-server:
     image: redis
   node-app:
-    restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - "4001:8081"
+    volumes:
+      - /app/node_modules
+#      - .:/app
