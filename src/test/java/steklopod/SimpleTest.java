@@ -28,7 +28,7 @@ class SimpleTest {
 
     @BeforeAll
     void setup() {
-        System.out.println(">>> \uD83D\uDC7F \uD83D\uDC7F \uD83D\uDC7F <<<");
+        System.out.println("\n>>> \uD83D\uDC7F \uD83D\uDC7F \uD83D\uDC7F <<<");
     }
 
     @Test
